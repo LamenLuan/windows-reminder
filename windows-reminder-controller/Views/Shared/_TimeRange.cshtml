@@ -1,0 +1,23 @@
+﻿@using windows_reminder_controller.ViewModels;
+@model TimeRangeViewModel
+
+@{
+  var required = Model.IsRequired ? "required" : "";
+  var className = TimeRangeViewModel.CLASS;
+}
+
+<div class="row mb-3">
+
+  <div class="col">
+    <label for="@Model.HoursId" class="form-label">Horas</label>
+    <input type="number" class="@className form-control" id="@Model.HoursId" name="@Model.HoursId" min="0" max="23" @required>
+  </div>
+
+  <span class="col-auto detalhe-input-horario">:</span>
+
+  <div class="col">
+    <label for="@Model.MinutesId" class="form-label">Minutos</label>
+    <input type="number" class="time-range form-control" id="@Model.MinutesId" name="@Model.MinutesId" min="0" max="59" @required>
+  </div>
+
+</div>

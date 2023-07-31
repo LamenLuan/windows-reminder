@@ -1,0 +1,26 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body > .container {
+  height: 80vh;
+}
+
+header {
+  height: 12vh;
+}
+
+.detalhe-input-horario {
+  margin-top: 35px;
+}

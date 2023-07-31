@@ -1,0 +1,18 @@
+﻿@using windows_reminder_controller.ViewModels;
+@model List<ReminderViewModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+  <div class="col-md-6 col-12">
+    <partial name="_Form" model="Model"></partial>
+  </div>
+  <div class="col-md-6 col-12">
+    <partial name="_Table"></partial>
+  </div>
+</div>
+
+@section Scripts{
+  <partial name="_Scripts" />
+}

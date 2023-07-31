@@ -1,0 +1,28 @@
+﻿@using windows_reminder_controller.Utils;
+@using windows_reminder_controller.ViewModels;
+
+@model List<ReminderViewModel>
+@{
+  ReminderViewModel vm;
+  var headers = typeof(ReminderViewModel).GetProperties();
+}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">@(nameof(vm.Description).DisplayName<ReminderViewModel>(headers))</th>
+      <th scope="col">@(nameof(vm.StartTime).DisplayName<ReminderViewModel>(headers))</th>
+      <th scope="col">@(nameof(vm.RepeatsIn).DisplayName<ReminderViewModel>(headers))</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var reminder in Model)
+    {
+      <tr>
+        <td>@reminder.Description</td>
+        <td>@reminder.StartTime</td>
+        <td>@reminder.RepeatsIn</td>
+      </tr>
+    }
+  </tbody>
+</table>

@@ -1,0 +1,32 @@
+﻿@using windows_reminder_controller.ViewModels;
+
+<script>
+
+  $("input[type='number']").on('input', function () {
+      let input = $(this).val()
+      let maxVal = $(this).attr('max')
+      let minVal = $(this).attr('min')
+
+      if (!minVal)
+          minVal = 0
+
+      if (input) {
+          let valor = parseInt(input)
+          if (maxVal && valor > maxVal)
+              valor = maxVal
+          $(this).val(valor)
+      }
+      else
+          $(this).val(minVal)
+  })
+
+  $(".@TimeRangeViewModel.CLASS").on('input', function () {
+      let input = $(this).val()
+      if (input) {
+          let valor = parseInt(input)
+          if (valor < 10)
+              $(this).val('0' + valor)
+      }
+  })
+
+</script>

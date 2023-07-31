@@ -1,0 +1,28 @@
+﻿@using windows_reminder_controller.Utils;
+@using windows_reminder_controller.ViewModels;
+
+@{
+  ReminderFilter vm;
+  var headers = typeof(ReminderFilter).GetProperties();
+  var descriptionName = nameof(vm.Description);
+  var timeRangeVm = new TimeRangeViewModel { HoursId = nameof(vm.StartHour), MinutesId = nameof(vm.StartMinute) };
+  var repeatTimeName = nameof(vm.RepeatTime);
+}
+
+<form class="needs-validation" method="post">
+
+  <div class="mb-3">
+    <label for="@descriptionName" class="form-label">@(descriptionName.DisplayName<ReminderFilter>(headers))</label>
+    <input type="text" class="form-control" id="@descriptionName" name="@descriptionName" required>
+  </div>
+
+  <partial name="_TimeRange" model="timeRangeVm" />
+
+  <div class="mb-3">
+    <label for="@repeatTimeName" class="form-label">@(repeatTimeName.DisplayName<ReminderFilter>(headers))</label>
+    <input type="number" class="form-control" id="@repeatTimeName" name="@repeatTimeName" min="0" max="12" required>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Adicionar</button>
+
+</form>
