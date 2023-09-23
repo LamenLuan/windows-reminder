@@ -9,59 +9,46 @@ namespace windows_reminder_controller.Controllers
   {
     public const string PATH = "data.dt";
 
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
-    {
-      _logger = logger;
-    }
-
     public IActionResult Index()
     {
       var alarms = new List<ReminderViewModel>();
 
-      try
+      if (!System.IO.File.Exists(PATH))
+        System.IO.File.Create(PATH);
+      else
       {
-        if (!System.IO.File.Exists(PATH))
-          System.IO.File.Create(PATH);
-        else
+        foreach (var line in System.IO.File.ReadAllLines(PATH))
         {
-          foreach (var line in System.IO.File.ReadAllLines(PATH))
+          if (!line.Any())
+            break;
+
+          var props = line.Split(',');
+
+          if (props.Length == 3)
           {
-            if (!line.Any())
-              break;
-
-            var props = line.Split(',');
-
-            if (props.Length == 3)
+            alarms.Add(new ReminderViewModel
             {
-              alarms.Add(new ReminderViewModel
-              {
-                Description = props[0],
-                StartTime = props[1],
-                RepeatsIn = props[2]
-              });
-            }
+              Description = props[0],
+              StartTime = props[1],
+              RepeatsIn = props[2]
+            });
           }
         }
       }
-      catch (Exception)
-      {
 
-        throw;
-      }
       return View(alarms);
     }
 
     [HttpPost]
     public IActionResult Index(ReminderFilter filter)
     {
-      return Index();
-    }
+      var reminder = $"{filter.Description},{filter.StartHour}:{filter.StartMinute},{filter.RepeatTime}";
 
-    public IActionResult Privacy()
-    {
-      return View();
+      var sw = new StreamWriter(PATH);
+      sw.WriteLine(reminder);
+      sw.Close();
+
+      return Index();
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
