@@ -7,4 +7,8 @@
     <RootNamespace>windows_reminder_controller</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\comum\common.csproj" />
+  </ItemGroup>
+
 </Project>

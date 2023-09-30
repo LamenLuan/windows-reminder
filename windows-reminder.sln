@@ -5,7 +5,9 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "windows-reminder", "windows-reminder\windows-reminder.csproj", "{B5EEF988-8AFB-489B-AFB9-46F15EA89774}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "windows-reminder-controller", "windows-reminder-controller\windows-reminder-controller.csproj", "{227CBDA3-A282-427D-8D96-EC222A0A7EFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "windows-reminder-controller", "windows-reminder-controller\windows-reminder-controller.csproj", "{227CBDA3-A282-427D-8D96-EC222A0A7EFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "common", "comum\common.csproj", "{6A41583B-A85E-4021-9CA7-E5A50DC10DF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{227CBDA3-A282-427D-8D96-EC222A0A7EFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{227CBDA3-A282-427D-8D96-EC222A0A7EFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{227CBDA3-A282-427D-8D96-EC222A0A7EFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A41583B-A85E-4021-9CA7-E5A50DC10DF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A41583B-A85E-4021-9CA7-E5A50DC10DF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A41583B-A85E-4021-9CA7-E5A50DC10DF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A41583B-A85E-4021-9CA7-E5A50DC10DF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

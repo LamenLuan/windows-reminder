@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using comum;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using windows_reminder_controller.Models;
 using windows_reminder_controller.ViewModels;
@@ -7,17 +8,16 @@ namespace windows_reminder_controller.Controllers
 {
   public class HomeController : Controller
   {
-    public const string PATH = "data.dt";
-
     public IActionResult Index()
     {
       var alarms = new List<ReminderViewModel>();
+      var fileData = FileManager.ReadFileData();
 
-      if (!System.IO.File.Exists(PATH))
-        System.IO.File.Create(PATH);
+      if (fileData == null)
+        FileManager.CreateFile();
       else
       {
-        foreach (var line in System.IO.File.ReadAllLines(PATH))
+        foreach (var line in fileData)
         {
           if (!line.Any())
             break;
@@ -43,11 +43,7 @@ namespace windows_reminder_controller.Controllers
     public IActionResult Index(ReminderFilter filter)
     {
       var reminder = $"{filter.Description},{filter.StartHour}:{filter.StartMinute},{filter.RepeatTime}";
-
-      var sw = new StreamWriter(PATH);
-      sw.WriteLine(reminder);
-      sw.Close();
-
+      FileManager.WriteData(reminder);
       return Index();
     }
 
