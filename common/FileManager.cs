@@ -26,7 +26,7 @@
 
 		public static void WriteData(string reminder)
 		{
-			var sw = new StreamWriter(Path);
+			var sw = new StreamWriter(Path, true);
 			sw.WriteLine(reminder);
 			sw.Close();
 		}
