@@ -1,4 +1,5 @@
 ﻿using comum;
+using Microsoft.Toolkit.Uwp.Notifications;
 
 namespace windows_reminder
 {
@@ -23,7 +24,7 @@ namespace windows_reminder
 					reminders.Add(new Reminder(props));
 			}
 
-			var tasks = reminders.Select(r => Task.Run(() => RunReminder(r)));
+			var tasks = reminders.Select(r => Task.Run(() => RunReminder(r))).ToArray();
 			Task.WhenAll(tasks).Wait();
 		}
 
@@ -32,7 +33,10 @@ namespace windows_reminder
 
 		private static void NotifyReminder(string message)
 		{
-			Console.WriteLine(message);
+			new ToastContentBuilder()
+				.AddText("Lembrete")
+				.AddText(message)
+				.Show();
 		}
 
 		private static void RunReminder(Reminder reminder)
