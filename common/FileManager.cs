@@ -1,4 +1,7 @@
-﻿namespace comum
+﻿using System;
+using System.IO;
+
+namespace comum
 {
 	public static class FileManager
 	{
@@ -16,10 +19,10 @@
 				Directory.CreateDirectory(DirectoryPath);
 		}
 
-		public static string[]? ReadFileData()
+		public static string[] ReadFileData()
 		{
 			if (!File.Exists(Path))
-				return null;
+				return Array.Empty<string>();
 
 			return File.ReadAllLines(Path);
 		}

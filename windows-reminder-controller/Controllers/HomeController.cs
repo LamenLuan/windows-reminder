@@ -13,7 +13,7 @@ namespace windows_reminder_controller.Controllers
       var alarms = new List<ReminderViewModel>();
       var fileData = FileManager.ReadFileData();
 
-      if (fileData == null)
+      if (!fileData.Any())
         FileManager.CreateFile();
       else
       {

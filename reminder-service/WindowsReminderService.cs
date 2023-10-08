@@ -1,16 +1,32 @@
 ﻿using comum;
 using Microsoft.Toolkit.Uwp.Notifications;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.ServiceProcess;
+using System.Threading;
+using System.Threading.Tasks;
 
-namespace windows_reminder
+namespace reminder_service
 {
-	public class Program
+	public partial class WindowsReminderService : ServiceBase
 	{
-		private static void Main()
+		public WindowsReminderService()
+		{
+#if DEBUG
+			OnStart(null);
+#else
+			InitializeComponent();
+#endif
+
+		}
+
+		protected override void OnStart(string[] args)
 		{
 			var reminders = new List<Reminder>();
 			var fileData = FileManager.ReadFileData();
 
-			if (fileData == null)
+			if (!fileData.Any())
 				return;
 
 			foreach (var line in fileData)
@@ -26,6 +42,10 @@ namespace windows_reminder
 
 			var tasks = reminders.Select(r => Task.Run(() => RunReminder(r))).ToArray();
 			Task.WhenAll(tasks).Wait();
+		}
+
+		protected override void OnStop()
+		{
 		}
 
 		private static bool NextReminderInSameDay(TimeSpan nextReminderTime)
