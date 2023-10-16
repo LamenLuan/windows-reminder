@@ -1,25 +1,29 @@
-﻿using System;
+﻿#if DEBUG
+using System;
+#else
+using System.ServiceProcess;
+#endif
 
 namespace reminder_service
 {
-	internal static class Program
-	{
+  internal static class Program
+  {
 #if DEBUG
 
-		static void Main()
-		{
+    static void Main()
+    {
 
-			new WindowsReminderService();
-			Console.ReadKey();
-		}
+      new WindowsReminderService();
+      Console.ReadKey();
+    }
 
 #else
 
-		static void Main()
-		{
-			ServiceBase.Run(new WindowsReminderService());
-		}
+    static void Main()
+    {
+      ServiceBase.Run(new WindowsReminderService());
+    }
 
 #endif
-	}
+  }
 }
